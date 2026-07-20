@@ -86,10 +86,6 @@ PRODUCT_PACKAGES += \
     update_verifier \
     update_engine_sideload
 
-# Soong
-PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
-
 PRODUCT_PACKAGES += \
     create_pl_dev \
     create_pl_dev.recovery
