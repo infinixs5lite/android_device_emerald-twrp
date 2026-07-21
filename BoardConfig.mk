@@ -58,7 +58,8 @@ BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 
 # Kernel
-TARGET_KERNEL := true
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
 
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb
 BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2
@@ -130,6 +131,12 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 # System as root
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 
+# Treble
+BOARD_VNDK_VERSION := current
+
+# USB Mounting
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
+
 # Recovery
 TARGET_NO_RECOVERY := true
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -187,6 +194,7 @@ TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_LIBRESETPROP :=true
 TW_INCLUDE_REPACKTOOLS := true
 TW_LOAD_VENDOR_BOOT_MODULES := true
+TW_LOAD_VENDOR_MODULES := "haptic.ko"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
 
 # Debug
