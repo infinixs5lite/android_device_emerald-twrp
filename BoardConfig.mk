@@ -16,6 +16,9 @@
 
 DEVICE_PATH := device/xiaomi/emerald
 
+TARGET_RECOVERY_DEVICE_DIRS := \
+    $(DEVICE_PATH)
+
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
 
