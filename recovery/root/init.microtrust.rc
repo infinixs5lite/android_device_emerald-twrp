@@ -53,3 +53,9 @@ on post-fs-data
     chmod 0755 /data/vendor/firmware
     chown system system /data/vendor/thh
     write /proc/bootprof "init miteelog"
+
+on property:vendor.crypto.fake_encrypt=1 && property:vold.post_fs_data_done=1
+    setprop vendor.soter.teei.crypto.state unencrypted
+
+on post-fs-data
+    setprop vendor.soter.teei.logini "start"
