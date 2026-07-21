@@ -37,11 +37,7 @@ on fs
     setprop vendor.teefs_state ready
     setprop ro.hardware.gatekeeper mitee
     
-    
-    
-    
-
-service miteelog /vendor/bin/miteelog
+    service miteelog /vendor/bin/miteelog
     user root
     group root
     disabled
@@ -52,6 +48,8 @@ on post-fs-data
     chmod 0755 /data/vendor/mitee
     chown system system /data/vendor/mitee
     mkdir /data/vendor/thh
-    chmod 0755 /data/vendor/thh
+    mkdir /data/vendor/mitee
+    chmod 0755 /data/vendor/firmware
+    chmod 0755 /data/vendor/firmware
     chown system system /data/vendor/thh
     write /proc/bootprof "init miteelog"
