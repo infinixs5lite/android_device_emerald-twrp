@@ -28,10 +28,9 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 $(call inherit-product, device/xiaomi/emerald/device.mk)
 
 ## Device identifier. This must come after all inclusions.
-PRODUCT_DEVICE := emerald
+PRODUCT_DEVICE := emerald 
 PRODUCT_NAME := twrp_emerald
 PRODUCT_BRAND := Redmi
-PRODUCT_MODEL := emerald
+PRODUCT_MODEL := emerald 
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_RELEASE_NAME := emerald
-
