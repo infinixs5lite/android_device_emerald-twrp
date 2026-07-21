@@ -85,17 +85,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.4
 
-# Additional binaries & libraries needed for recovery
-TARGET_RECOVERY_DEVICE_MODULES += \
-    libion \
-    libpuresoftkeymasterdevice \
-    libkeymint
-
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.keymaster@4.1
-
 # Keymaster
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.1
@@ -104,7 +93,8 @@ PRODUCT_PACKAGES += \
 TARGET_RECOVERY_DEVICE_MODULES += \
     android.hardware.keymaster@4.1
     
-TARGET_INIT_VENDOR_LIB := libinit_emeral
+
+TARGET_INIT_VENDOR_LIB := libinit_emerald
 TARGET_RECOVERY_DEVICE_MODULES := libinit_emerald
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
