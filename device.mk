@@ -34,9 +34,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_ven
 # Configure twrp common.mk
 $(call inherit-product, vendor/twrp/config/common.mk)
 
+# VNDK
+PRODUCT_TARGET_VNDK_VERSION := 31
+
 # API
-PRODUCT_SHIPPING_API_LEVEL := 34
-PRODUCT_TARGET_VNDK_VERSION := 34
+PRODUCT_SHIPPING_API_LEVEL := 31
 
 # Enable Fuse Passthrough
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
