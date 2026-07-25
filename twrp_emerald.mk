@@ -17,7 +17,7 @@
 DEVICE_PATH := device/xiaomi/emerald 
 
 # Inherit from device.mk configuration
-$(call inherit-product, $(DEVICE_PATH)/device.mk)
+$(call inherit-product, device/xiaomi/emerald/device.mk)
 
 ## Device identifier. This must come after all inclusions.
 PRODUCT_DEVICE := emerald 
