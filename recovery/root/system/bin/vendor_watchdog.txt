@@ -1,0 +1,5 @@
+#!/system/bin/sh
+# Vendor watchdog for TWRP recovery
+# Signals readiness for dependent HAL services
+sleep 1
+setprop sys.vendor.watchdog ready

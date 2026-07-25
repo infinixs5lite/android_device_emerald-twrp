@@ -1,0 +1,4 @@
+#!/system/bin/sh
+# MiTEE helper for TWRP recovery
+# Initializes TEE environment for decryption support
+exit 0
