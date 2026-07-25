@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2022 The TWRP Open Source Project
+# Copyright (C) 2025 The TWRP Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,46 +14,104 @@
 # limitations under the License.
 #
 
-# API
-PRODUCT_SHIPPING_API_LEVEL := 31
+DEVICE_PATH := device/xiaomi/emerald 
 
-# Dynamic
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
+# Configure base.mk
+$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 
-# Virtual A/B
-ENABLE_VIRTUAL_AB := true
+# Configure core_64_bit_only.mk
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
+
+# Configure Virtual A/B
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
-# SDCard replacement functionality
+# Configure virtual_ab_ota compression_with_xor.mk
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression_with_xor.mk)
+
+# Configure emulated_storage.mk
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
+# Configure launch_with_vendor_ramdisk.mk
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
+
+# Configure twrp common.mk
+$(call inherit-product, vendor/twrp/config/common.mk)
+
+# API
+PRODUCT_SHIPPING_API_LEVEL := 34
+PRODUCT_TARGET_VNDK_VERSION := 34
+
+# Enable Fuse Passthrough
+PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
+
+# TWRP in Vendor Boot
+PRODUCT_PROPERTY_OVERRIDES += ro.twrp.vendor_boot=true
+
+# A/B
 AB_OTA_UPDATER := true
-AB_OTA_PARTITIONS := \
+ENABLE_VIRTUAL_AB := true
+TARGET_ENFORCE_AB_OTA_PARTITION_LIST := true
+AB_OTA_PARTITIONS += \
+    apusys \
+    audio_dsp \
     boot \
+    ccu \
+    connsys_bt \
+    connsys_gnss \
+    connsys_wifi \
+    countrycode \
+    dpm \
     dtbo \
-    system \
-    system_ext \
-    product \
-    vendor \
+    gpueb \
+    gz \
+    init_boot \
+    lk \
+    logo \
+    mcf_ota \
+    mcupm \
+    mi_ext \
+    modem \
+    mvpu_algo \
     odm \
+    odm_dlkm \
+    pi_img \
+    preloader_raw \
+    product \
+    pvmfw \
+    scp \
+    spmfw \
+    sspm \
+    system \
+    system_dlkm \
+    system_ext \
+    tee \
     vbmeta \
     vbmeta_system \
-    vbmeta_vendor
+    vbmeta_vendor \
+    vcp \
+    vendor \
+    vendor_boot \
+    vendor_dlkm
 
-# Update engine
 PRODUCT_PACKAGES += \
-    checkpoint_gc \
     update_engine \
     update_engine_sideload \
-    update_verifier
+    update_verifier \
+    checkpoint_gc
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
     POSTINSTALL_PATH_system=system/bin/mtk_plpath_utils \
-    FILESYSTEM_TYPE_system=ext4 \
+    FILESYSTEM_TYPE_system=erofs \
     POSTINSTALL_OPTIONAL_system=true
 
-# Boot control HAL
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_vendor=true \
+    POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
+    FILESYSTEM_TYPE_vendor=erofs \
+    POSTINSTALL_OPTIONAL_vendor=true
+
+# Bootctrl
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.2-mtkimpl \
     android.hardware.boot@1.2-mtkimpl.recovery
@@ -61,19 +119,21 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     bootctrl
 
+# Dynamic
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
     android.hardware.health@2.1-service
 
-# Build MT-PL-Utils
+# Mtk plpath utils
 PRODUCT_PACKAGES += \
     mtk_plpath_utils \
     mtk_plpath_utils.recovery
 
-# Keystore
-PRODUCT_PACKAGES += \
-    android.system.keystore2
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
 
 # Keymint
 PRODUCT_PACKAGES += \
@@ -81,21 +141,9 @@ PRODUCT_PACKAGES += \
     android.hardware.security.secureclock \
     android.hardware.security.sharedsecret
 
-# Drm
-PRODUCT_PACKAGES += \
-    android.hardware.drm@1.4
-
-# Keymaster
-PRODUCT_PACKAGES += \
-    android.hardware.keymaster@4.1
-
 # Additional target Libraries
 TARGET_RECOVERY_DEVICE_MODULES += \
     android.hardware.keymaster@4.1
-    
-
-TARGET_INIT_VENDOR_LIB := libinit_emerald
-TARGET_RECOVERY_DEVICE_MODULES := libinit_emerald
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.keymaster@4.1.so
