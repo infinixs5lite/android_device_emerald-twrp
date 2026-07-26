@@ -7,9 +7,6 @@ ro.boot.dynamic_partitions=true
 # USB MTP
 ro.sys.usb.storage.type=mtp
 
-# Crypto
-ro.crypto.volume.filenames_mode=aes-256-cts
-
 # Platform
 ro.vendor.mediatek.platform=MT6789
 
@@ -17,6 +14,3 @@ ro.vendor.mediatek.platform=MT6789
 external_storage.projid.enabled=1
 external_storage.casefold.enabled=1
 external_storage.sdcardfs.enabled=0
-
-# API
-ro.vendor.api_level=34
