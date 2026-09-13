@@ -14,8 +14,8 @@
 # limitations under the License.
 #
 
+# Device Path
 DEVICE_PATH := device/xiaomi/emerald 
-LOCAL_PATH := device/xiaomi/emerald 
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
@@ -67,7 +67,6 @@ TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb
-TARGET_PREBUILT_DTB := $(LOCAL_PATH)/prebuilt/dtb
 BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2 bootconfig
 BOARD_KERNEL_BASE := 0x3fff8000
 BOARD_PAGE_SIZE := 4096
@@ -129,7 +128,6 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # Properties
 TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
-TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
 # System as root
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
@@ -144,7 +142,6 @@ BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE :=
 BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
 BOARD_INCLUDE_RECOVERY_RAMDISK_IN_VENDOR_BOOT := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/root/system/etc/recovery.fstab
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
