@@ -1,11 +1,11 @@
 #
-# Copyright (C) 2024 The TWRP Open Source Project
+# Copyright (C) 2022 The TWRP Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     https://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,8 +14,10 @@
 # limitations under the License.
 #
 
-# Device Path
-DEVICE_PATH := device/xiaomi/emerald 
+DEVICE_PATH := device/xiaomi/emerald
+
+# Build Hack
+BUILD_BROKEN_DUP_RULES := true
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
@@ -26,17 +28,18 @@ TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := generic
-TARGET_CPU_VARIANT_RUNTIME := cortex-a55
+TARGET_CPU_VARIANT_RUNTIME := cortex-a78
 
 TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv8-a
+TARGET_2ND_ARCH_VARIANT := armv8-2a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := generic
-TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
+TARGET_CPU_VARIANT := generic
+TARGET_CPU_VARIANT_RUNTIME := cortex-a55
 
-TARGET_BOARD_SUFFIX := _64
 TARGET_USES_64_BIT_BINDER := true
+
+TARGET_SUPPORTS_32_BIT_APPS := true
 TARGET_SUPPORTS_64_BIT_APPS := true
 
 ENABLE_CPUSETS := true
@@ -48,27 +51,17 @@ TARGET_OTA_ASSERT_DEVICE := emerald
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := emerald 
 TARGET_NO_BOOTLOADER := true
-TARGET_USES_UEFI := true
 
 # Platform
 TARGET_BOARD_PLATFORM := mt6789
-
-# Build Hack
-BUILD_BROKEN_DUP_RULES := true
-BUILD_BROKEN_SYS_PROP_RULES := true
-BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
-BUILD_BROKEN_NINJA_USES_ENV_VARS += RTIC_MPGEN
-BUILD_BROKEN_PLUGIN_VALIDATION := \
-    soong-libaosprecovery_defaults soong-libguitwrp_defaults soong-libminuitwrp_defaults soong-vold_defaults
-BUILD_BROKEN_SRC_DIR_IS_WRITABLE := true
 
 # Kernel
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 
-BOARD_KERNEL_SEPARATED_DTBO := true
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
-BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2 bootconfig
+
+BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2
 BOARD_KERNEL_BASE := 0x3fff8000
 BOARD_PAGE_SIZE := 4096
 BOARD_KERNEL_OFFSET := 0x00008000
@@ -76,7 +69,7 @@ BOARD_RAMDISK_OFFSET := 0x26f08000
 BOARD_TAGS_OFFSET := 0x07c88000
 BOARD_BOOT_HEADER_VERSION := 4
 BOARD_HEADER_SIZE := 2128
-BOARD_DTB_SIZE := 201662
+BOARD_DTB_SIZE := 197217
 BOARD_DTB_OFFSET := 0x07c88000
 BOARD_FLASH_BLOCK_SIZE := 262144
 
@@ -93,16 +86,14 @@ BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_RAMDISK_USE_LZ4 := true
 TARGET_NO_KERNEL := true
 
-# VNDK
-BOARD_VNDK_VERSION := current
-
 # AVB
 BOARD_AVB_ENABLE := true
-BOARD_AVB_VBMETA_SYSTEM := system
-BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
-BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA4096
-BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
-BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 1
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
+BOARD_AVB_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
+BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+BOARD_AVB_RECOVERY_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 
 # Partitions
 BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 67108864
