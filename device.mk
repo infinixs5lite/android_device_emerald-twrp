@@ -1,6 +1,8 @@
 # Copyright (C) 2024 The Android Open Source Project
 # SPDX-License-Identifier: Apache-2.0
 
+DEVICE_PATH := device/xiaomi/emerald
+
 # Inherit from common AOSP config
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
