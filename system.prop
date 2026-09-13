@@ -15,3 +15,11 @@ ro.vendor.mtk_mitee_support=1
 # TEE
 ro.vendor.mtk_tee_gp_support=1
 ro.vendor.mtk_trustonic_tee_support=1
+
+# MtkBoard
+ro.mediatek.platform=MT6789
+ro.hardware=mt6789
+
+# Board
+ro.product.device=emerald 
+ro.build.product=emerald 
