@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 DEVICE_PATH := device/xiaomi/emerald
+LOCAL_PATH := device/xiaomi/emerald 
 
 # SDCard replacement functionality
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
