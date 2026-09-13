@@ -14,10 +14,17 @@
 # limitations under the License.
 #
 
-DEVICE_PATH := device/xiaomi/emerald 
+# Define hardware platform
+PRODUCT_RELEASE_NAME := emerald 
 
-# Inherit from device.mk configuration
-$(call inherit-product, device/xiaomi/emerald/device.mk)
+# Device path for OEM device tree
+DEVICE_PATH := device/xiaomi/$(PRODUCT_RELEASE_NAME)
+
+# Inherit from hardware-specific part of the product configuration
+$(call inherit-product, $(DEVICE_PATH)/device.mk)
+
+# Inherit some common TWRP stuff.
+$(call inherit-product, vendor/twrp/config/common.mk)
 
 ## Device identifier. This must come after all inclusions.
 PRODUCT_DEVICE := emerald 
