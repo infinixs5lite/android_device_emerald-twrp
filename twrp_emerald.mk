@@ -16,12 +16,15 @@
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
-# Inherit from our custom product configuration.
+# Enable project quotas and casefolding for emulated storage without sdcardfs
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+
+# Inherit some common TWRP stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 # Device specific configs.
@@ -34,3 +37,10 @@ PRODUCT_BRAND := Redmi
 PRODUCT_MODEL := emerald 
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_RELEASE_NAME := emerald
+
+# Hide Reflash TWRP & FUSE passthrough
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.twrp.vendor_boot=true \
+    persist.sys.fuse.passthrough.enable=true
+
+PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
