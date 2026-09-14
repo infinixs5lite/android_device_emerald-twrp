@@ -53,10 +53,6 @@ export OF_STATUS_INDENT_LEFT=48
 export OF_STATUS_INDENT_RIGHT=48
 export OF_CLOCK_POS=1
 
-# Flashlight
-export OF_FLASHLIGHT_ENABLE=1
-export OF_FL_PATH1 := /sys/devices/platform/flashlights_mt6789
-
 # Maintainer
 export OF_MAINTAINER=nino
 
