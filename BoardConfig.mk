@@ -205,3 +205,24 @@ BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT :=
 # Vendor modules
 TW_LOAD_VENDOR_BOOT_MODULES := true
 
+#SHRP-specific lines
+SHRP_PATH := device/xiaomi/emerald 
+SHRP_MAINTAINER := NINO
+SHRP_DEVICE_CODE := emerald 
+SHRP_OFFICIAL := true
+SHRP_INTERNAL := /sdcard
+SHRP_EXTERNAL := /sdcard1
+SHRP_OTG := /usb_otg
+SHRP_REC_TYPE := SAR
+SHRP_DEVICE_TYPE := A/B
+SHRP_EXPRESS := true
+SHRP_DARK := true
+SHRP_EXPRESS_USE_DATA := true
+SHRP_FLASH := 1
+SHRP_CUSTOM_FLASHLIGHT := true
+SHRP_FONP_1 := /sys/class/torch/torch/torch_level
+SHRP_FLASH_MAX_BRIGHTNESS := 1
+SHRP_REC := /dev/block/platform/bootdevice/by-name/vendor_boot
+SHRP_NOTCH := true
+SHRP_STATUSBAR_RIGHT_PADDING := 20
+SHRP_STATUSBAR_LEFT_PADDING := 20
