@@ -17,9 +17,10 @@
 # Only the below variable(s) need to be changed!
 #
 
+DEVICE_PATH := device/xiaomi/emerald 
+
 # Inherit from device.mk configuration
 $(call inherit-product, $(DEVICE_PATH)/device.mk)
-
 
 # Inherit some common TWRP stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
