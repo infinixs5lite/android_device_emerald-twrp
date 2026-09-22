@@ -197,17 +197,6 @@ TARGET_USES_MKE2FS := true
 TW_INCLUDE_FUSE_NTFS := true
 TW_INCLUDE_FUSE_EXFAT := true
 
-# Haptic
-#TW_LOAD_VENDOR_MODULES := "haptic.ko"
-#TW_SUPPORT_INPUT_AIDL_HAPTICS := true
-#TW_SUPPORT_INPUT_AIDL_HAPTICS_FQNAME := "IVibrator/vibratorfeature"
-#TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
-
-# libminuitwrp needs both AIDL bindings even when crypto/FBE is disabled.
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.vibrator-V2-cpp.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.vibrator-V2-ndk.so
-
 # Indicator
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone7/temp"
 TW_BATTERY_SYSFS_WAIT_SECONDS := 6
