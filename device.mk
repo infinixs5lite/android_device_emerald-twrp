@@ -41,11 +41,9 @@ AB_OTA_POSTINSTALL_CONFIG += \
 ENABLE_VIRTUAL_AB := true
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch.mk)
 
-# VNDK
-PRODUCT_TARGET_VNDK_VERSION := 34
-
 # API
 PRODUCT_SHIPPING_API_LEVEL := 31
+PRODUCT_TARGET_VNDK_VERSION := 36
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
