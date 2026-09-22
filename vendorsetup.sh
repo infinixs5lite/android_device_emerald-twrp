@@ -42,9 +42,3 @@
 	export FOX_INSTALLER_DISABLE_AUTOREBOOT=1
 	export FOX_DELETE_AROMAFM=1
 	export FOX_VARIANT="A16"
-else
-	if [ -z "$FOX_BUILD_DEVICE" -a -z "$BASH_SOURCE" ]; then
-		echo "I: This script requires bash. Not processing the $FDEVICE $(basename $0)"
-	fi
-fi
-#
