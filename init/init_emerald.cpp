@@ -28,10 +28,10 @@ void vendor_load_properties()
         property_override(string("ro.product.") + prop + string("manufacturer"), "Xiaomi");
         property_override(string("ro.product.") + prop + string("name"), "emerald");
         property_override(string("ro.product.") + prop + string("device"), "emerald");
-        property_override(string("ro.product.") + prop + string("model"), "24090RA29C");
+        property_override(string("ro.product.") + prop + string("model"), "23117RA68G");
         property_override(string("ro.product.") + prop + string("marketname"), "Redmi Note 13 Pro");
-        property_override(string("ro.product.") + prop + string("cert"), "24090RA29C");
+        property_override(string("ro.product.") + prop + string("cert"), "23117RA68G");
     }
-    property_override("ro.bootimage.build.date.utc", "1756453697");
-    property_override("ro.build.date.utc", "1756453697");
+    property_override("ro.bootimage.build.date.utc", "1787191511");
+    property_override("ro.build.date.utc", "1787191511");
 }
