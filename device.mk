@@ -17,19 +17,25 @@
 DEVICE_PATH := device/xiaomi/emerald
 
 # Configure base.mk
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 
-# Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
+# Configure core_64_bit_only.mk
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 
-# Enable project quotas and casefolding for emulated storage without sdcardfs
+# Configure Virtual A/B
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+
+# Configure virtual_ab compression.mk
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression.mk)
+
+# Configure emulated_storage.mk
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
-# Enable Virtual A/B OTA
+# Configure launch_with_vendor_ramdisk.mk
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression.mk)
+
+# Configure twrp common.mk
+$(call inherit-product, vendor/twrp/config/common.mk)
 
 AB_OTA_UPDATER := true
 ENABLE_VIRTUAL_AB := true
