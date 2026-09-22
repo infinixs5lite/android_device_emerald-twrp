@@ -23,6 +23,6 @@ $(call inherit-product, $(DEVICE_PATH)/device.mk)
 PRODUCT_DEVICE := emerald
 PRODUCT_NAME := twrp_emerald
 PRODUCT_BRAND := Redmi
-PRODUCT_MODEL := 23054RA19C
+PRODUCT_MODEL := 23117RA68G
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_RELEASE_NAME := Redmi Note 13 Pro
