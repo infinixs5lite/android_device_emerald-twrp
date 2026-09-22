@@ -17,10 +17,12 @@
 # Only the below variable(s) need to be changed!
 #
 
-DEVICE_PATH := device/xiaomi/emerald
-
 # Inherit from device.mk configuration
 $(call inherit-product, $(DEVICE_PATH)/device.mk)
+
+
+# Inherit some common TWRP stuff.
+$(call inherit-product, vendor/twrp/config/common.mk)
 
 ## Device identifier. This must come after all inclusions.
 PRODUCT_DEVICE := emerald 
@@ -29,10 +31,5 @@ PRODUCT_BRAND := Redmi
 PRODUCT_MODEL := emerald 
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_RELEASE_NAME := emerald
-
-# Hide Reflash TWRP & FUSE passthrough
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.twrp.vendor_boot=true \
-    persist.sys.fuse.passthrough.enable=true
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
