@@ -37,6 +37,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_ven
 # Configure twrp common.mk
 $(call inherit-product, vendor/twrp/config/common.mk)
 
+# some OrangeFox-specific settings
+$(call inherit-product, $(DEVICE_PATH)/fox_emerald.mk)
+
 AB_OTA_UPDATER := true
 ENABLE_VIRTUAL_AB := true
 TARGET_ENFORCE_AB_OTA_PARTITION_LIST := true
