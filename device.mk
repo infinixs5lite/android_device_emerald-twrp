@@ -14,28 +14,63 @@
 # limitations under the License.
 #
 
-DEVICE_PATH := device/xiaomi/emerald
-
 # Configure base.mk
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 
-# Configure core_64_bit_only.mk
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
+# Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
-# Configure Virtual A/B
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
-
-# Configure virtual_ab_ota compression_with_xor.mk
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression_with_xor.mk)
-
-# Configure emulated_storage.mk
+# Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
-# Configure launch_with_vendor_ramdisk.mk
+# Enable Virtual A/B OTA
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression.mk)
 
-# Configure twrp common.mk
-$(call inherit-product, vendor/twrp/config/common.mk)
+AB_OTA_UPDATER := true
+ENABLE_VIRTUAL_AB := true
+TARGET_ENFORCE_AB_OTA_PARTITION_LIST := true
+AB_OTA_PARTITIONS += \
+    apusys \
+    audio_dsp \
+    boot \
+    ccu \
+    connsys_gnss \
+    countrycode \
+    dpm \
+    dtbo \
+    gpueb \
+    gz \
+    init_boot \
+    lk \
+    logo \
+    mcf_ota \
+    mcupm \
+    modem \
+    mvpu_algo \
+    odm_dlkm \
+    pi_img \
+    preloader_raw \
+    product \
+    pvmfw \
+    scp \
+    spmfw \
+    sspm \
+    system \
+    system_dlkm \
+    system_ext \
+    tee \
+    vbmeta \
+    vbmeta_system \
+    vbmeta_vendor \
+    vcp \
+    vendor \
+    vendor_boot \
+    vendor_dlkm \
+    mi_ext
+
 
 # API
 PRODUCT_SHIPPING_API_LEVEL := 34
